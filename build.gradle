@@ -1,0 +1,14 @@
+group 'uniara-rest-introduction'
+version '1.0'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:1.5.2.RELEASE")
+}
