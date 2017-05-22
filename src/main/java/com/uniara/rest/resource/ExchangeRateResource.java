@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * Created by damianijr on 19/05/17.
  */
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/exchangerate")
 public class ExchangeRateResource {

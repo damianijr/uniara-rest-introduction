@@ -11,16 +11,41 @@
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Introdução ao REST</a>
+                    <a class="navbar-brand" href="#">Cotação de Modeas </a>
                 </div>
             </div>
         </nav>
 
         <div id="main" class="container-fluid" style="margin-top: 2%;">
-            <h3 class="page-header">Gestão de Moedas</h3>
 
+            <!-- Formulario !-->
             <form>
-                <hr />
+                <h3 class="page-header">Gestão de Moedas</h3>
+
+                <div class="row">
+                    <div class="form-group col-md-2">
+                        <label for="symbol">Simbolo </label>
+                        <input type="text" class="form-control" id="symbol"  placeholder="EX: USD, EUR" />
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="name">Nome</label>
+                        <input type="text" class="form-control" id="name" placeholder="EX: Dólar, Euro"/>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="rate">Cotação</label>
+                        <input type="number" min="0.01" step="0.01"  class="form-control" id="rate" placeholder="EX: 2.31" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="description">Descrição</label>
+                        <textarea class="form-control" id="description" placeholder="EX: Dolar Americano, Dolar Canadense"></textarea>
+                    </div>
+                </div>
+
                 <div id="actions" class="row">
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-primary">Salvar</button>
@@ -28,12 +53,48 @@
                     </div>
                 </div>
             </form>
+            <!-- /Formulario !-->
+
+            <!-- Listagem !-->
+            <h3 class="page-header">Moedas Cadastradas</h3>
+            <div id="list" class="row">
+
+                <div id="list-table" class="table-responsive col-md-12">
+                    <table class="table table-striped" cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
+                                <th>Simbolo</th>
+                                <th>Nome</th>
+                                <th>Cotação</th>
+                                <th>Descrição</th>
+                                <th class="actions">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>USD</td>
+                                <td>Dolar Americano</td>
+                                <td>R$ 3.55</td>
+                                <td>Cotacao do Dolar Americano - WallStreet</td>
+                                <td class="actions">
+                                    <a class="btn btn-success btn-xs" href="view.html">Visualizar</a>
+                                    <a class="btn btn-warning btn-xs" href="edit.html">Editar</a>
+                                    <a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /Listagem !-->
         </div>
+
 
 
 
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/view.js"></script>
 
 
 
