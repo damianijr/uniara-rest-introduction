@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  * Created by carlos.ribeiro on 5/22/17.
  */
-@ResponseStatus(value=HttpStatus.CONFLICT,reason="Essa cotação já está cadastrada no sistema")
-public class AlreadyExistsException extends Exception{
+@ResponseStatus(value=HttpStatus.NOT_FOUND,reason="Cotação não encontrada")
+public class NotFoundException extends Exception{
 }

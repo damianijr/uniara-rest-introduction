@@ -35,4 +35,9 @@ public class ExchangeRateRepository {
         }
         return this.exchangeRateList.get(this.exchangeRateList.indexOf(exchangeRate));
     }
+
+    public boolean exists(final String symbol) {
+        final ExchangeRate exchangeRate = new ExchangeRate(symbol);
+        return this.exchangeRateList.contains(exchangeRate);
+    }
 }
