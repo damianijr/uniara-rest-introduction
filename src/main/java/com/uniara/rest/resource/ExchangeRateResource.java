@@ -2,6 +2,7 @@ package com.uniara.rest.resource;
 
 import com.uniara.rest.domain.ExchangeRate;
 import com.uniara.rest.exceptions.AlreadyExistsException;
+import com.uniara.rest.exceptions.NotFoundException;
 import com.uniara.rest.repository.ExchangeRateRepository;
 import com.uniara.rest.service.ExchangeRateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,9 @@ public class ExchangeRateResource {
     public List<ExchangeRate> list() { return this.exchangeRateService.findAll(); }
 
     @GetMapping("/{symbol}")
-    public ExchangeRate show(@PathVariable final String symbol) { return this.exchangeRateService.findBySymbol(symbol); }
+    public ExchangeRate show(@PathVariable final String symbol) throws NotFoundException { return this.exchangeRateService.findBySymbol(symbol); }
 
     @DeleteMapping("/{symbol}")
-    public void delete(@PathVariable final String symbol) { this.exchangeRateService.deleteBySymbol(symbol); }
+    public void delete(@PathVariable final String symbol) throws NotFoundException { this.exchangeRateService.deleteBySymbol(symbol); }
 
 }
