@@ -29,6 +29,9 @@ public class ExchangeRateRepository {
 
     public ExchangeRate findBySymbol(final String symbol) {
         final ExchangeRate exchangeRate = new ExchangeRate(symbol);
+        if (!this.exchangeRateList.contains(exchangeRate)) {
+            return null;
+        }
         return this.exchangeRateList.get(this.exchangeRateList.indexOf(exchangeRate));
     }
 }
