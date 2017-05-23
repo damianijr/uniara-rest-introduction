@@ -13,6 +13,9 @@ public class ExchangeRate {
     private String description;
     private BigDecimal rate;
 
+    public ExchangeRate() {}
+    public ExchangeRate(String symbol) { this.symbol = symbol; }
+
     public String getSymbol() {
         return symbol;
     }

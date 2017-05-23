@@ -29,6 +29,9 @@ public class ExchangeRateResource {
         return this.exchangeRateRepository.findAll();
     }
 
+    @GetMapping("/{symbol}")
+    public ExchangeRate show(@PathVariable final String symbol) { return this.exchangeRateRepository.findBySymbol(symbol); }
+
     @DeleteMapping("/{symbol}")
     public void delete(@PathVariable final String symbol) {
         this.exchangeRateRepository.deleteBySymbol(symbol);
