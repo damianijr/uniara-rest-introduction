@@ -1,7 +1,9 @@
 package com.uniara.rest.resource;
 
 import com.uniara.rest.domain.ExchangeRate;
+import com.uniara.rest.exceptions.AlreadyExistsException;
 import com.uniara.rest.repository.ExchangeRateRepository;
+import com.uniara.rest.service.ExchangeRateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,13 +17,12 @@ import java.util.List;
 @RequestMapping("/exchangerate")
 public class ExchangeRateResource {
 
-
     @Autowired
-    private ExchangeRateRepository exchangeRateRepository;
+    private ExchangeRateService exchangeRateService;
 
     @PostMapping(consumes = "application/json")
-    public void add(@RequestBody final ExchangeRate exchangeRate) {
-        this.exchangeRateRepository.save(exchangeRate);
+    public void add(@RequestBody final ExchangeRate exchangeRate) throws AlreadyExistsException {
+        this.exchangeRateService.create(exchangeRate);
     }
 
     @PutMapping(value = "/{symbol}", consumes = "application/json")
@@ -30,16 +31,12 @@ public class ExchangeRateResource {
     }
 
     @GetMapping
-    public List<ExchangeRate> list() {
-        return this.exchangeRateRepository.findAll();
-    }
+    public List<ExchangeRate> list() { return this.exchangeRateService.findAll(); }
 
     @GetMapping("/{symbol}")
-    public ExchangeRate show(@PathVariable final String symbol) { return this.exchangeRateRepository.findBySymbol(symbol); }
+    public ExchangeRate show(@PathVariable final String symbol) { return this.exchangeRateService.findBySymbol(symbol); }
 
     @DeleteMapping("/{symbol}")
-    public void delete(@PathVariable final String symbol) {
-        this.exchangeRateRepository.deleteBySymbol(symbol);
-    }
+    public void delete(@PathVariable final String symbol) { this.exchangeRateService.deleteBySymbol(symbol); }
 
 }
