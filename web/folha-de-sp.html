@@ -2,9 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Folha de São Paulo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/folha-de-sp.css">;
 </head>
 <body>
+    <div id="main" class="container-fluid" style="margin-top: 2%;">
+        <div class="logo">
+            <img src="images/logo-folha.png" />
+        </div>
+
+        <div>
+            <h1>Cotações</h1>
+        </div>
+
+        <div id="table" class="row">
+            <div id="exchange_rate" class="table-responsive col-md-12">
+                <table class="table table-striped" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/view.js"></script>
+        <script src="js/folhaExchangeRate.js"></script>
+    </div>
 
 </body>
 </html>
