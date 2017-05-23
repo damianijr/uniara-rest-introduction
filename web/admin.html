@@ -22,34 +22,38 @@
             <form>
                 <h3 class="page-header">Gestão de Moedas</h3>
 
+                <!-- Alertas !-->
+                <div class="alert alert-success" style="display: none;" id="success"></div>
+                <div class="alert alert-danger" style="display: none;" id="error"></div>
+
                 <div class="row">
                     <div class="form-group col-md-2">
                         <label for="symbol">Simbolo </label>
-                        <input type="text" class="form-control" id="symbol"  placeholder="EX: USD, EUR" />
+                        <input type="text" class="form-control" id="symbol" name="symbol"  placeholder="EX: USD, EUR" />
                     </div>
 
                     <div class="form-group col-md-4">
                         <label for="name">Nome</label>
-                        <input type="text" class="form-control" id="name" placeholder="EX: Dólar, Euro"/>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="EX: Dólar, Euro"/>
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="rate">Cotação</label>
-                        <input type="number" min="0.01" step="0.01"  class="form-control" id="rate" placeholder="EX: 2.31" />
+                        <input type="number" min="0.01" step="0.01"  name="rate" class="form-control" id="rate" placeholder="EX: 2.31" />
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label for="description">Descrição</label>
-                        <textarea class="form-control" id="description" placeholder="EX: Dolar Americano, Dolar Canadense"></textarea>
+                        <textarea class="form-control" id="description" name="description" placeholder="EX: Dolar Americano, Dolar Canadense"></textarea>
                     </div>
                 </div>
 
                 <div id="actions" class="row">
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-primary">Salvar</button>
-                        <button type="submit" class="btn btn-default">Cancelar</button>
+                        <button type="reset" class="btn btn-default">Cancelar</button>
                     </div>
                 </div>
             </form>
@@ -95,8 +99,11 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/view.js"></script>
+        <script src="js/exchangeRate.js"></script>
 
-
+        <script>
+            refreshExchangeList();
+        </script>
 
     </body>
 </html>
