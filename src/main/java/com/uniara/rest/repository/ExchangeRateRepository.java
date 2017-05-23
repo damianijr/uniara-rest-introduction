@@ -23,8 +23,12 @@ public class ExchangeRateRepository {
     }
 
     public boolean deleteBySymbol(final String symbol) {
-        final ExchangeRate exchangeRate = new ExchangeRate();
-        exchangeRate.setSymbol(symbol);
+        final ExchangeRate exchangeRate = new ExchangeRate(symbol);
         return this.exchangeRateList.remove(exchangeRate);
+    }
+
+    public ExchangeRate findBySymbol(final String symbol) {
+        final ExchangeRate exchangeRate = new ExchangeRate(symbol);
+        return this.exchangeRateList.get(this.exchangeRateList.indexOf(exchangeRate));
     }
 }
