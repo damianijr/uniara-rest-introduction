@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Created by damianijr on 19/05/17.
+ * Endpoint de cotações.
  */
 @CrossOrigin("*")
 @RestController
@@ -31,7 +31,7 @@ public class ExchangeRateResource {
     }
 
     @PatchMapping(value = "/{symbol}", consumes = "application/json")
-    public void update(@PathVariable final String symbol, @RequestBody final ExchangeRate exchangeRate) {
+    public void update(@PathVariable final String symbol, @RequestBody final ExchangeRate exchangeRate) throws NotFoundException {
         this.exchangeRateService.update(symbol, exchangeRate);
     }
 

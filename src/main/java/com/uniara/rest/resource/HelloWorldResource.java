@@ -1,12 +1,12 @@
 package com.uniara.rest.resource;
 
 import com.uniara.rest.domain.ExchangeRate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.websocket.server.PathParam;
 
 /**
- * Created by damianijr on 19/05/17.
+ * Endpoint para testes de serviços.
  */
 @RestController
 @RequestMapping("/helloWorld")
@@ -24,4 +24,13 @@ public class HelloWorldResource {
         return new ExchangeRate();
     }
 
+    @GetMapping("/exchange/{symbol}")
+    public String exchangePathParam(@PathVariable final String symbol) {
+        return "PathParam Symbol:" + symbol;
+    }
+
+    @GetMapping("/exchangeRequestParam")
+    public String exchangeRequestParam(@RequestParam final String symbol) {
+        return "RequestParam Symbol:" + symbol;
+    }
 }

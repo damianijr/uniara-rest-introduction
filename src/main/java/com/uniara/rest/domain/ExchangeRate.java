@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
- * Created by damianijr on 19/05/17.
+ * Classe que representa uma unidade monetaria e sua respectiva taxa de câmbio.
  */
 public class ExchangeRate {
 
@@ -14,6 +14,7 @@ public class ExchangeRate {
     private BigDecimal rate;
 
     public ExchangeRate() {}
+
     public ExchangeRate(String symbol) { this.symbol = symbol; }
 
     public String getSymbol() {
