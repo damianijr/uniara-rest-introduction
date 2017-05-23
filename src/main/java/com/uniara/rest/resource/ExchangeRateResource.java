@@ -3,7 +3,6 @@ package com.uniara.rest.resource;
 import com.uniara.rest.domain.ExchangeRate;
 import com.uniara.rest.exceptions.AlreadyExistsException;
 import com.uniara.rest.exceptions.NotFoundException;
-import com.uniara.rest.repository.ExchangeRateRepository;
 import com.uniara.rest.service.ExchangeRateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +26,13 @@ public class ExchangeRateResource {
     }
 
     @PutMapping(value = "/{symbol}", consumes = "application/json")
-    public void edit(@RequestBody final ExchangeRate exchangeRate) {
-        this.exchangeRateRepository.save(exchangeRate);
+    public void edit(@RequestBody final ExchangeRate exchangeRate) throws NotFoundException {
+        this.exchangeRateService.update(exchangeRate);
+    }
+
+    @PatchMapping(value = "/{symbol}", consumes = "application/json")
+    public void update(@PathVariable final String symbol, @RequestBody final ExchangeRate exchangeRate) {
+        this.exchangeRateService.update(symbol, exchangeRate);
     }
 
     @GetMapping

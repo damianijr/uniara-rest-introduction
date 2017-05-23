@@ -1,6 +1,7 @@
 
 const OPERATION_ADD = 'ADD';
 const OPERATION_EDIT = 'EDIT';
+const OPERATION_EDIT_RATE = 'EDIT_RATE';
 
 function refreshExchangeList() {
     $('#list-table tbody').empty();
@@ -21,13 +22,16 @@ function saveExchangeRate(event) {
         case OPERATION_EDIT:
             editExchange();
             break;
+        case OPERATION_EDIT_RATE:
+            editRate();
+            break;
         default:
             throw new Error('Operation [' + operation + '] not found.');
     }
     return false;
 }
 
-function addExchange(e) {
+function addExchange() {
     let exchangeRate = $('form').serializeArray().reduce(function(a, x) { a[x.name] = x.value; return a; }, {});
     newExchangeRate(exchangeRate)
         .done(function() {
@@ -35,24 +39,28 @@ function addExchange(e) {
             refreshExchangeList();
             resetForm();
         })
-        .fail(function(jqXHR, textStatus) {
-        console.log(textStatus)
-            error('Erro ao cadastrar nova moeda.')
-        });
+        .fail(() => error('Erro ao cadastrar nova moeda.'));
 }
 
-function editExchange(e) {
+function editExchange() {
     let exchangeRate = $('form').serializeArray().reduce(function(a, x) { a[x.name] = x.value; return a; }, {});
     editExchangeRate(exchangeRate)
-        .done(function() {
+        .done(() => {
             success('Nova moeda editada com sucesso!');
             refreshExchangeList();
             resetForm();
         })
-        .fail(function(jqXHR, textStatus) {
-        console.log(textStatus)
-            error('Erro ao editar moeda.')
-        });
+        .fail(() => error('Erro ao editar moeda.'));
+}
+
+function editRate() {
+    editExRate($('#symbol').val(), $('#rate').val())
+        .done(() => {
+            success('Cotação atualizada com sucesso!');
+            refreshExchangeList();
+            resetForm();
+        })
+        .fail(() => error('Erro ao editar Cotação.'));
 }
 
 
@@ -67,6 +75,15 @@ function editExchangeRateOnClick(e) {
     e.preventDefault();
     $('#operation').val(OPERATION_EDIT);
     $('#symbol').prop('readonly', true)
+    loadExchangeRate($(this).data('exchangeRate'));
+}
+
+function prepareFormToEditRate(e) {
+    e.preventDefault();
+    $('#operation').val(OPERATION_EDIT_RATE);
+    $('#symbol').prop('disabled', true)
+    $('#name').prop('disabled', true)
+    $('#description').prop('disabled', true)
     loadExchangeRate($(this).data('exchangeRate'));
 }
 
@@ -93,7 +110,8 @@ function addExchangeRateOnTable(exchangeRate){
 function btnActions(exchangeRate) {
     return $('<div />')
             .append(btnDelete(exchangeRate))
-            .append(btnEdit(exchangeRate));
+            .append(btnEdit(exchangeRate))
+            .append(btnRate(exchangeRate));
 }
 
 function btnDelete(exchangeRate) {
@@ -112,13 +130,22 @@ function btnEdit(exchangeRate) {
                 .on('click', editExchangeRateOnClick);
 }
 
+function btnRate(exchangeRate) {
+    return $('<a />')
+                .data('exchangeRate', exchangeRate)
+                .addClass('btn btn-success btn-xs')
+                .html('Cotação')
+                .on('click', prepareFormToEditRate);
+
+}
+
 
 function success(msg) {
-    $('#success').html(msg).show().fadeOut(5000);
+    $('#success').html(msg).show().fadeOut(2000);
 }
 
 function error(msg) {
-    $('#error').show().html(msg).fadeOut(5000);
+    $('#error').show().html(msg).fadeOut(2000);
 }
 
 function resetForm() {

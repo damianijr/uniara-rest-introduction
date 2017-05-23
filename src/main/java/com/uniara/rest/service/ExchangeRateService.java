@@ -4,6 +4,7 @@ import com.uniara.rest.domain.ExchangeRate;
 import com.uniara.rest.exceptions.AlreadyExistsException;
 import com.uniara.rest.exceptions.NotFoundException;
 import com.uniara.rest.repository.ExchangeRateRepository;
+import com.uniara.rest.util.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,5 +42,24 @@ public class ExchangeRateService {
             throw new NotFoundException();
         }
         return this.exchangeRateRepository.deleteBySymbol(symbol);
+    }
+
+    public void update(String symbol, ExchangeRate exchangeRate) {
+        try {
+            final ExchangeRate target = this.exchangeRateRepository.findBySymbol(symbol);
+            new BeanUtil().copyProperties(target, exchangeRate);
+            this.exchangeRateRepository.save(target);
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void update(ExchangeRate exchangeRate) throws NotFoundException {
+        if(!this.exchangeRateRepository.exists(exchangeRate.getSymbol())) {
+            throw new NotFoundException();
+        }
+        exchangeRateRepository.save(exchangeRate);
     }
 }

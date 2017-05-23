@@ -20,6 +20,15 @@ function editExchangeRate(exchangeRate) {
     });
 }
 
+function editExRate(symbol, newRate) {
+    return $.ajax({
+        url: 'http://localhost:8080/exchangerate/' + symbol,
+        type: 'PATCH',
+        data: JSON.stringify({ rate: newRate }),
+        contentType:"application/json; charset=utf-8",
+    });
+}
+
 
 function deleteExchangeRate(symbol) {
     return $.ajax({
@@ -27,3 +36,4 @@ function deleteExchangeRate(symbol) {
         type: 'DELETE'
      });
 }
+
