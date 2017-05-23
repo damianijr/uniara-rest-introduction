@@ -2,7 +2,7 @@ function exchangeRateList() {
     return $.get('http://localhost:8080/exchangerate');
 }
 
-function newExchangeRateList(exchangeRate) {
+function newExchangeRate(exchangeRate) {
     return $.ajax({
         url: 'http://localhost:8080/exchangerate',
         type: 'POST',
@@ -10,6 +10,16 @@ function newExchangeRateList(exchangeRate) {
         contentType:"application/json; charset=utf-8",
     });
 }
+
+function editExchangeRate(exchangeRate) {
+    return $.ajax({
+        url: 'http://localhost:8080/exchangerate/' + exchangeRate.symbol,
+        type: 'PUT',
+        data: JSON.stringify(exchangeRate),
+        contentType:"application/json; charset=utf-8",
+    });
+}
+
 
 function deleteExchangeRate(symbol) {
     return $.ajax({

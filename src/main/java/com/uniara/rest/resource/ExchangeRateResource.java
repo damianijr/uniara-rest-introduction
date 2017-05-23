@@ -24,6 +24,11 @@ public class ExchangeRateResource {
         this.exchangeRateRepository.save(exchangeRate);
     }
 
+    @PutMapping(value = "/{symbol}", consumes = "application/json")
+    public void edit(@RequestBody final ExchangeRate exchangeRate) {
+        this.exchangeRateRepository.save(exchangeRate);
+    }
+
     @GetMapping
     public List<ExchangeRate> list() {
         return this.exchangeRateRepository.findAll();

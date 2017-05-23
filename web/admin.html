@@ -19,12 +19,13 @@
         <div id="main" class="container-fluid" style="margin-top: 2%;">
 
             <!-- Formulario !-->
-            <form>
+            <form onsubmit="return saveExchangeRate(event)">
                 <h3 class="page-header">Gestão de Moedas</h3>
 
                 <!-- Alertas !-->
                 <div class="alert alert-success" style="display: none;" id="success"></div>
                 <div class="alert alert-danger" style="display: none;" id="error"></div>
+                <input type="hidden" id="operation" value="ADD" />
 
                 <div class="row">
                     <div class="form-group col-md-2">

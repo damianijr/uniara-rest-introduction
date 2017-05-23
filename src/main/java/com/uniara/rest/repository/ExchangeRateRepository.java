@@ -15,6 +15,7 @@ public class ExchangeRateRepository {
     private List<ExchangeRate> exchangeRateList =  new ArrayList<>();
 
     public boolean save(final ExchangeRate exchangeRate) {
+        this.exchangeRateList.remove(this.exchangeRateList.add(exchangeRate);exchangeRate);
         return this.exchangeRateList.add(exchangeRate);
     }
 
